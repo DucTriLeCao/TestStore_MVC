@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TestStoreWeb.Data;
+
 namespace TestStoreWeb
 {
     public class Program
@@ -8,6 +11,10 @@ namespace TestStoreWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDBContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
+
+
 
             var app = builder.Build();
 

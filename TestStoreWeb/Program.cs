@@ -17,7 +17,7 @@ namespace TestStoreWeb
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
             
             
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 
@@ -40,7 +40,7 @@ namespace TestStoreWeb
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{area=Guest}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

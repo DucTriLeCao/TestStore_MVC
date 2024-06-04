@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TestStoreWeb.Models;
 
-namespace TestStoreWeb.Controllers
+namespace TestStoreWeb.Areas.Guest.Controllers
 {
+    [Area("Guest")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

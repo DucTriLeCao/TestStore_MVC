@@ -10,18 +10,18 @@ using TestStoreWeb.Repository.IRepository;
 
 namespace TestStoreWeb.Repository
 {
-    public class CategoryRepository : Repository<Category>,ICategoryRepository
+    public class ProductRepository : Repository<Product>,IProductRepository
     {
         private ApplicationDBContext _db;
-        public CategoryRepository(ApplicationDBContext db) : base(db)
+        public ProductRepository(ApplicationDBContext db) : base(db)
         {
             _db = db;
         }
 
 
-        public void Update(Category obj)
+        public void Update(Product obj)
         {
-            _db.Category.Update(obj);
+            _db.Product.Update(obj);
         }
     }
 }

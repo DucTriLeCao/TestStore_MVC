@@ -8,9 +8,10 @@ using TestStoreWeb.Models;
 
 namespace TestStoreWeb.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IUnitOfWork
     {
-        void Update(Category obj);
-
+        ICategoryRepository Category { get; }
+        IProductRepository Product { get; }
+        void Save();
     }
 }

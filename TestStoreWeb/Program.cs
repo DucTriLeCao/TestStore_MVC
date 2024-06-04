@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TestStoreWeb.Data;
+using TestStoreWeb.Repository;
+using TestStoreWeb.Repository.IRepository;
 
 namespace TestStoreWeb
 {
@@ -13,6 +15,9 @@ namespace TestStoreWeb
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
+            
+            
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
 

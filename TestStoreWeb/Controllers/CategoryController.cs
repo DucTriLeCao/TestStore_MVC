@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestStoreWeb.Data;
 using TestStoreWeb.Models;
+using TestStoreWeb.Repository.IRepository;
 
 namespace TestStoreWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDBContext _db;
-        public CategoryController(ApplicationDBContext db)
+        private readonly ICategoryRepository _categoryRepo;
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _categoryRepo = db;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Category.ToList();
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
             return View(objCategoryList);
         }
         public IActionResult Create()
@@ -29,8 +30,8 @@ namespace TestStoreWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Category.Add(obj);
-                _db.SaveChanges();
+                _categoryRepo.Add(obj);
+                _categoryRepo.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -42,7 +43,7 @@ namespace TestStoreWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Category.Find(id);
+            Category? categoryFromDb = _categoryRepo.Get(u => u.CategoryId == id);
             if(categoryFromDb == null)
             {
                 return NotFound();
@@ -54,8 +55,8 @@ namespace TestStoreWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Category.Update(obj);
-                _db.SaveChanges();
+                _categoryRepo.Update(obj);
+                _categoryRepo.Save();
                 TempData["success"] = "Category edited successfully";
                 return RedirectToAction("Index");
             }
@@ -67,7 +68,7 @@ namespace TestStoreWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Category.Find(id);
+            Category? categoryFromDb = _categoryRepo.Get(u => u.CategoryId == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -77,13 +78,13 @@ namespace TestStoreWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Category.Find(id);
+            Category? obj = _categoryRepo.Get(u => u.CategoryId == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Category.Remove(obj);
-            _db.SaveChanges();
+            _categoryRepo.Remove(obj);
+            _categoryRepo.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }

@@ -18,7 +18,8 @@ namespace TestStoreWeb.Data
                 new Category { CategoryId = 1, CategoryName = "Sữa", DisplayOrder = 1 },
                 new Category { CategoryId = 2, CategoryName = "Tả", DisplayOrder = 2 },
                 new Category { CategoryId = 3, CategoryName = "Đồ chơi", DisplayOrder = 3 },
-                new Category { CategoryId = 4, CategoryName = "Quần áo", DisplayOrder = 4 }
+                new Category { CategoryId = 4, CategoryName = "Quần áo", DisplayOrder = 4 },
+                new Category { CategoryId = 5, CategoryName = "Thực Phẩm chức năng", DisplayOrder = 5 }
                 );
             modelBuilder.Entity<Product>().HasData(
                 new Product
@@ -32,6 +33,8 @@ namespace TestStoreWeb.Data
                     Price10 = 495,
                     Price20 = 485,
                     Quantity = 550,
+                    CategoryId = 1,
+                    ImageUrl = "",
                 },
                 new Product
                 {
@@ -44,6 +47,8 @@ namespace TestStoreWeb.Data
                     Price10 = 420,
                     Price20 = 410,
                     Quantity = 200,
+                    CategoryId = 2,
+                    ImageUrl = "",
                 },
                new Product
                {
@@ -56,6 +61,8 @@ namespace TestStoreWeb.Data
                    Price10 = 1130,
                    Price20 = 1100,
                    Quantity = 150,
+                   CategoryId = 3,
+                   ImageUrl = "",
                },
                 new Product
                 {
@@ -68,6 +75,9 @@ namespace TestStoreWeb.Data
                     Price10 = 235,
                     Price20 = 230,
                     Quantity = 350,
+                    CategoryId = 4,
+                    ImageUrl = "",
+
                 },
                new Product
                {
@@ -80,6 +90,8 @@ namespace TestStoreWeb.Data
                    Price10 = 270,
                    Price20 = 260,
                    Quantity = 500,
+                   CategoryId = 5,
+                   ImageUrl = "",
                }
 
                );

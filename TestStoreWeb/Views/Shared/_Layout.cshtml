@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"/>
+
 </head>
 <body>
     <header>
@@ -37,6 +39,9 @@
                                 <li class="nav-item">
                                     <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                </li>
                                 
                                 <li><hr class="dropdown-divider"></li>
                                 
@@ -62,6 +67,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js" asp-append-version="true"></script>
+    <!-- Place the first <script> tag in your HTML's <head> -->
+    <script src="https://cdn.tiny.cloud/1/ay8ke3kifhmof4cc93vp51kkxl1b7zkfiux43677s0n82m1n/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

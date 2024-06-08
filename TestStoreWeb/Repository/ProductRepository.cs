@@ -21,7 +21,24 @@ namespace TestStoreWeb.Repository
 
         public void Update(Product obj)
         {
-            _db.Product.Update(obj);
+            var objFromDb = _db.Product.FirstOrDefault(u => u.ProductId == obj.ProductId);
+            if (objFromDb != null)
+            {
+                objFromDb.ProductName = obj.ProductName;
+                objFromDb.ProductId = obj.ProductId;
+                objFromDb.ProductDescription = obj.ProductDescription;
+                objFromDb.Brand = obj.Brand;
+                objFromDb.ListPrice = obj.ListPrice;
+                objFromDb.Price = obj.Price;
+                objFromDb.Price10 = obj.Price10;
+                objFromDb.Price20 = obj.Price20;
+                objFromDb.Quantity = obj.Quantity;
+                objFromDb.CategoryId = obj.CategoryId;
+                if(obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TestStoreWeb
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDBContext>();
-            
+            builder.Services.AddRazorPages();
             
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -40,6 +40,7 @@ namespace TestStoreWeb
             app.UseRouting();
 
             app.UseAuthorization();
+            app.MapRazorPages();
 
             app.MapControllerRoute(
                 name: "default",

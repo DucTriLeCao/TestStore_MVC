@@ -17,7 +17,7 @@ function loadDataTable() {
             { data: 'quantity', "width": "20%" },
             { data: 'category.categoryName', "width": "15%" },
             {
-                data: 'id',
+                data: 'productId',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
                         <a href="/admin/product/upsert?id=${data}" class="btn btn-primary mx-2">

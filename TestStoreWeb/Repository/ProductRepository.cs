@@ -25,7 +25,6 @@ namespace TestStoreWeb.Repository
             if (objFromDb != null)
             {
                 objFromDb.ProductName = obj.ProductName;
-                objFromDb.ProductId = obj.ProductId;
                 objFromDb.ProductDescription = obj.ProductDescription;
                 objFromDb.Brand = obj.Brand;
                 objFromDb.ListPrice = obj.ListPrice;

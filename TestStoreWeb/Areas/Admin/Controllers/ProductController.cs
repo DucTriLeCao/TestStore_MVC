@@ -65,7 +65,8 @@ namespace TestStoreWeb.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     {
                         //update old image
-                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+                        var oldImagePath = 
+                            Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
                         if(System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
@@ -75,7 +76,7 @@ namespace TestStoreWeb.Areas.Admin.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    productVM.Product.ImageUrl = @"images\product" + fileName;
+                    productVM.Product.ImageUrl = @"\images\product" + fileName;
                 }
                 if(productVM.Product.ProductId == 0)
                 {
@@ -85,7 +86,7 @@ namespace TestStoreWeb.Areas.Admin.Controllers
                 {
                     _unitOfWork.Product.Update(productVM.Product);
                 }
-                _unitOfWork.Product.Add(productVM.Product);
+                //_unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");

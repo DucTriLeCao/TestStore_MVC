@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TestStoreWeb.Data;
 using TestStoreWeb.Repository;
 using TestStoreWeb.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
 
 namespace TestStoreWeb
 {
@@ -15,6 +16,8 @@ namespace TestStoreWeb
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDBContext>();
             
             
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

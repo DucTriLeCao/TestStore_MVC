@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TestStoreWeb.Data;
 using TestStoreWeb.Models;
 using TestStoreWeb.Repository.IRepository;
+using TestStoreWeb.Utility;
 using TestStoreWeb.ViewModels;
 
 namespace TestStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_User_Ad)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

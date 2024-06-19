@@ -3,6 +3,8 @@ using TestStoreWeb.Data;
 using TestStoreWeb.Repository;
 using TestStoreWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
+using TestStoreWeb.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace TestStoreWeb
 {
@@ -17,10 +19,19 @@ namespace TestStoreWeb
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDBContext>();
+
+            builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            }
+                );
             builder.Services.AddRazorPages();
             
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 
 
@@ -38,7 +49,7 @@ namespace TestStoreWeb
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapRazorPages();
 

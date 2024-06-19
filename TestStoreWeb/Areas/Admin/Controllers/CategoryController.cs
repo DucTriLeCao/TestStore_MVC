@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TestStoreWeb.Data;
 using TestStoreWeb.Models;
 using TestStoreWeb.Repository.IRepository;
+using TestStoreWeb.Utility;
 
 namespace TestStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_User_Ad)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
